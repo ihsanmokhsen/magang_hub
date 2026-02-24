@@ -37,6 +37,41 @@ const quizData = [
     options: ['Pajak Kendaraan Bermotor', 'Pendaftaran Kendaraan Bermotor', 'Penerbitan Kartu Berkendara'],
     answer: 0,
   },
+  {
+    question: 'Apa kepanjangan BBNKB?',
+    options: ['Bea Balik Nama Kendaraan Bermotor', 'Biaya Balik Nama Kendaraan Baru', 'Bukti Balik Nomor Kendaraan Bermotor'],
+    answer: 0,
+  },
+  {
+    question: 'Apa kepanjangan PBBKB?',
+    options: ['Pajak Bahan Bakar Kendaraan Bermotor', 'Pajak Bahan Baku Kendaraan Bermotor', 'Pungutan Bahan Bakar Kendaraan Bermotor'],
+    answer: 0,
+  },
+  {
+    question: 'Apa kepanjangan PAD?',
+    options: ['Pendapatan Asli Daerah', 'Pendanaan Aset Daerah', 'Penerimaan Administrasi Daerah'],
+    answer: 0,
+  },
+  {
+    question: 'UPTD BPAD di NTT tersebar di berapa kabupaten/kota?',
+    options: ['22', '20', '24'],
+    answer: 0,
+  },
+  {
+    question: 'STNK digunakan sebagai?',
+    options: ['Bukti registrasi dan identitas kendaraan', 'Surat mutasi kendaraan', 'Surat izin mengemudi'],
+    answer: 0,
+  },
+  {
+    question: 'Bidang Pendapatan I mengelola salah satu pajak berikut, yaitu...',
+    options: ['Pajak Rokok', 'Pajak Hotel', 'Pajak Air Tanah Kota'],
+    answer: 0,
+  },
+  {
+    question: 'Salah satu tugas UPTD BPAD adalah...',
+    options: ['Verifikasi dan penagihan pajak', 'Menyusun APBN', 'Menerbitkan SIM'],
+    answer: 0,
+  },
 ];
 
 const state = {
@@ -110,7 +145,7 @@ function renderQuizQuestion() {
   quizProgress.textContent = `Soal ${state.quizIndex + 1} dari ${quizData.length}`;
   quizQuestion.textContent = current.question;
   quizFeedback.textContent = '';
-  quizScore.textContent = `Skor: ${state.quizScore}`;
+  quizScore.textContent = `Skor benar: ${state.quizScore}/${quizData.length}`;
   quizNextBtn.disabled = true;
 
   quizOptions.innerHTML = '';
@@ -137,22 +172,23 @@ function handleAnswer(selectedIndex) {
   });
 
   if (selectedIndex === current.answer) {
-    state.quizScore += 20;
+    state.quizScore += 1;
     quizFeedback.textContent = 'Jawaban benar.';
   } else {
     quizFeedback.textContent = 'Jawaban belum tepat. Pelajari lagi istilah BPAD.';
   }
 
-  quizScore.textContent = `Skor: ${state.quizScore}`;
+  quizScore.textContent = `Skor benar: ${state.quizScore}/${quizData.length}`;
   quizNextBtn.disabled = false;
 }
 
 function renderQuizResult() {
+  const percentage = Math.round((state.quizScore / quizData.length) * 100);
   quizProgress.textContent = 'Selesai';
   quizQuestion.textContent = 'Game selesai. Keren, Sobat Magang!';
   quizOptions.innerHTML = '';
   quizFeedback.textContent = 'Klik Ulangi untuk mencoba lagi.';
-  quizScore.textContent = `Skor akhir: ${state.quizScore} / 100`;
+  quizScore.textContent = `Skor akhir: ${state.quizScore}/${quizData.length} (${percentage}%)`;
   quizNextBtn.disabled = true;
 }
 

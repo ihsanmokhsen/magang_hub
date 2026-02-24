@@ -262,6 +262,10 @@ ol {
   font-size: 1rem;
 }
 
+.checklist-list li {
+  margin-bottom: 0.4rem;
+}
+
 #tab-pengenalan .panel:nth-child(2) {
   border-color: rgba(56, 189, 248, 0.35);
 }
