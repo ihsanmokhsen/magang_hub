@@ -1,3 +1,6 @@
+const DOC_PROGRESS_KEY = 'bpad-doc-progress-v1';
+const CHECKLIST_PROGRESS_KEY = 'bpad-checklist-progress-v1';
+
 const documents = [
   {
     title: 'RENSTRA',
@@ -9,6 +12,26 @@ const documents = [
     description: 'Dokumen RPJMD sebagai arah pembangunan dan prioritas daerah.',
     link: 'https://drive.google.com/file/d/1Azjxne-mDYDYPUJIPhf7ZBDcBYFR0oeU/view?usp=sharing',
   },
+  {
+    title: 'LKIP Laporan Kinerja Instansi Pemerintah',
+    description: 'Dokumen LKIP sebagai laporan kinerja instansi pemerintah.',
+    link: 'https://drive.google.com/file/d/1Wmh5_Kaq50d3HO-MQS7V9c5rrjUfjWws/view?usp=sharing',
+  },
+  {
+    title: 'SOTK Badan Pendapatan dan Aset Daerah',
+    description: 'Struktur organisasi BPAD sebagai acuan tugas dan fungsi setiap unit.',
+    link: 'https://drive.google.com/file/d/18uTbAhfOgL6-kfQ7p9uzZu19VjGsPdAv/view?usp=drive_link',
+  },
+];
+
+const onboardingChecklistItems = [
+  { id: 'hadir-tepat-waktu', label: 'Sudah hadir sebelum pukul 07.30.' },
+  { id: 'lapor-pembimbing', label: 'Sudah lapor ke pembimbing/unit kerja.' },
+  { id: 'alur-kerja', label: 'Sudah memahami ruang kerja dan alur koordinasi harian.' },
+  { id: 'baca-dokumen-awal', label: 'Sudah membuka tab Dokumen dan membaca dokumen inti (RENSTRA/RPJMD).' },
+  { id: 'simpan-laporan', label: 'Sudah menyimpan link laporan harian Tally.' },
+  { id: 'pahami-aturan', label: 'Sudah memahami aturan disiplin, etika, dan jam kerja.' },
+  { id: 'kenal-istilah', label: 'Sudah mengenal istilah dasar BPAD (BPAD, UPTD, STNK, PKB, BBNKB).' },
 ];
 
 const quizData = [
@@ -23,8 +46,8 @@ const quizData = [
     answer: 1,
   },
   {
-    question: 'Samsat dikenal sebagai?',
-    options: ['Sistem Administrasi Manunggal Satu Atap', 'Sarana Administrasi Masyarakat Satu Atap', 'Sistem Amanah Manajemen Satu Atap'],
+    question: 'UPTD dalam konteks BPAD merujuk pada?',
+    options: ['Unit pelaksana teknis BPAD di kabupaten/kota', 'Unit pusat transfer data', 'Unit penetapan tarif daerah'],
     answer: 0,
   },
   {
@@ -78,13 +101,22 @@ const state = {
   quizIndex: 0,
   quizScore: 0,
   answered: false,
+  readDocs: loadStoredMap(DOC_PROGRESS_KEY),
+  checklist: loadStoredMap(CHECKLIST_PROGRESS_KEY),
 };
 
 const tabButtons = Array.from(document.querySelectorAll('.tab-btn'));
 const tabPanels = Array.from(document.querySelectorAll('.tab-panel'));
+const tabLinks = Array.from(document.querySelectorAll('[data-tab-link]'));
 
 const docGrid = document.getElementById('doc-grid');
 const template = document.getElementById('doc-card-template');
+const docProgressText = document.getElementById('doc-progress-text');
+const docProgressFill = document.getElementById('doc-progress-fill');
+
+const checklistList = document.getElementById('onboarding-checklist');
+const checklistProgressText = document.getElementById('checklist-progress-text');
+const checklistProgressFill = document.getElementById('checklist-progress-fill');
 
 const quizProgress = document.getElementById('quiz-progress');
 const quizQuestion = document.getElementById('quiz-question');
@@ -97,6 +129,15 @@ const quizResetBtn = document.getElementById('quiz-reset');
 tabButtons.forEach((button) => {
   button.addEventListener('click', () => {
     setActiveTab(button.dataset.tab);
+  });
+});
+
+tabLinks.forEach((link) => {
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+    const tabName = link.dataset.tabLink;
+    setActiveTab(tabName);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 });
 
@@ -116,6 +157,30 @@ quizNextBtn.addEventListener('click', () => {
 
 quizResetBtn.addEventListener('click', resetQuiz);
 
+function loadStoredMap(key) {
+  try {
+    const value = localStorage.getItem(key);
+    if (!value) return {};
+
+    const parsed = JSON.parse(value);
+    if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) return parsed;
+    return {};
+  } catch {
+    return {};
+  }
+}
+
+function saveStoredMap(key, payload) {
+  localStorage.setItem(key, JSON.stringify(payload));
+}
+
+function toId(value) {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
+
 function setActiveTab(tabName) {
   tabButtons.forEach((btn) => btn.classList.remove('active'));
   tabPanels.forEach((panel) => panel.classList.remove('active'));
@@ -127,16 +192,93 @@ function setActiveTab(tabName) {
   if (targetPanel) targetPanel.classList.add('active');
 }
 
+function updateDocumentProgress() {
+  if (!docProgressText || !docProgressFill) return;
+
+  const total = documents.length;
+  const completed = documents.filter((doc, index) => state.readDocs[getDocumentId(doc, index)]).length;
+  const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+  docProgressText.textContent = `Progress baca dokumen: ${completed}/${total} selesai (${percent}%)`;
+  docProgressFill.style.width = `${percent}%`;
+}
+
+function getDocumentId(doc, index) {
+  return `doc-${index + 1}-${toId(doc.title)}`;
+}
+
 function renderDocuments() {
+  if (!docGrid || !template) return;
+
   docGrid.innerHTML = '';
 
-  documents.forEach((doc) => {
+  documents.forEach((doc, index) => {
+    const docId = getDocumentId(doc, index);
     const node = template.content.firstElementChild.cloneNode(true);
+
     node.querySelector('.doc-title').textContent = doc.title;
     node.querySelector('.doc-desc').textContent = doc.description;
     node.querySelector('.doc-link').href = doc.link;
+
+    const readCheckbox = node.querySelector('.doc-read-checkbox');
+    if (readCheckbox) {
+      readCheckbox.checked = Boolean(state.readDocs[docId]);
+      readCheckbox.addEventListener('change', (event) => {
+        state.readDocs[docId] = event.target.checked;
+        saveStoredMap(DOC_PROGRESS_KEY, state.readDocs);
+        updateDocumentProgress();
+      });
+    }
+
     docGrid.appendChild(node);
   });
+
+  updateDocumentProgress();
+}
+
+function updateChecklistProgress() {
+  if (!checklistProgressText || !checklistProgressFill) return;
+
+  const total = onboardingChecklistItems.length;
+  const completed = onboardingChecklistItems.filter((item) => state.checklist[item.id]).length;
+  const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+  checklistProgressText.textContent = `Progress checklist: ${completed}/${total} selesai (${percent}%)`;
+  checklistProgressFill.style.width = `${percent}%`;
+}
+
+function renderChecklist() {
+  if (!checklistList) return;
+
+  checklistList.innerHTML = '';
+
+  onboardingChecklistItems.forEach((item) => {
+    const li = document.createElement('li');
+    li.className = 'checklist-item';
+
+    const label = document.createElement('label');
+    label.className = 'checklist-toggle';
+
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    input.checked = Boolean(state.checklist[item.id]);
+
+    const text = document.createElement('span');
+    text.textContent = item.label;
+
+    input.addEventListener('change', (event) => {
+      state.checklist[item.id] = event.target.checked;
+      saveStoredMap(CHECKLIST_PROGRESS_KEY, state.checklist);
+      updateChecklistProgress();
+    });
+
+    label.appendChild(input);
+    label.appendChild(text);
+    li.appendChild(label);
+    checklistList.appendChild(li);
+  });
+
+  updateChecklistProgress();
 }
 
 function renderQuizQuestion() {
@@ -200,4 +342,5 @@ function resetQuiz() {
 }
 
 renderDocuments();
+renderChecklist();
 renderQuizQuestion();

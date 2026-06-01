@@ -10,6 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" type="image/jpeg" href="./fav.jpg" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -24,9 +25,48 @@
             Ruang belajar digital untuk Sobat Magang BPAD agar lebih cepat memahami
             instansi, tugas, budaya kerja, dan istilah penting sebelum mulai berkegiatan.
           </p>
-          <a href="./dashboard.html" class="btn btn-primary">Mulai</a>
+          <a id="start-btn" href="./dashboard.html" class="btn btn-primary">Mulai</a>
         </div>
       </section>
     </main>
+    <div id="page-loader" class="page-loader" aria-hidden="true">
+      <div class="loader-stack">
+        <img class="loader-logo" src="./logo.png" alt="Logo Pemprov NTT" />
+        <div class="spinner" aria-label="Memuat halaman">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <p class="loader-text">Memuat dashboard...</p>
+      </div>
+    </div>
+    <script>
+      const startBtn = document.getElementById('start-btn');
+      const pageLoader = document.getElementById('page-loader');
+      let isNavigating = false;
+
+      if (startBtn && pageLoader) {
+        startBtn.addEventListener('click', (event) => {
+          if (isNavigating) {
+            event.preventDefault();
+            return;
+          }
+
+          event.preventDefault();
+          isNavigating = true;
+          pageLoader.classList.add('active');
+          document.body.classList.add('loading');
+
+          setTimeout(() => {
+            window.location.href = startBtn.href;
+          }, 1200);
+        });
+      }
+    </script>
   </body>
 </html>

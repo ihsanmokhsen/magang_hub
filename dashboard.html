@@ -10,6 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" type="image/jpeg" href="./fav.jpg" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -43,8 +44,8 @@
               dokumen penting, dan istilah kunci melalui game singkatan.
             </p>
             <div class="region-grid">
-              <p><strong>22 UPTD</strong><br />Dukungan layanan Samsat di kabupaten/kota NTT.</p>
-              <p><strong>4 Tab Utama</strong><br />Pengenalan, Aturan, Dokumen, dan Game Edukasi.</p>
+              <p><strong>22 UPTD</strong><br />Dukungan layanan UPTD di kabupaten/kota NTT.</p>
+              <p><strong>4 Tab Utama</strong><br />Pengenalan, Aturan, Dokumen, dan Game.</p>
               <p><strong>Mode Baca</strong><br />Konten aman untuk peserta magang tanpa edit/hapus.</p>
             </div>
           </article>
@@ -57,8 +58,8 @@
               menjadi lebih terarah dan bernilai.
             </p>
             <p>
-              BPAD adalah Badan Pendapatan dan Aset Daerah. Salah satu layanan yang
-              paling dikenal masyarakat adalah Samsat yang didukung UPTD di wilayah NTT.
+              BPAD adalah Badan Pendapatan dan Aset Daerah. Salah satu dukungan layanan
+              yang paling dikenal masyarakat berada pada UPTD di wilayah NTT.
             </p>
           </article>
 
@@ -201,7 +202,7 @@
           </article>
 
           <article class="panel">
-            <h3>Samsat di NTT (Kabupaten/Kota)</h3>
+            <h3>UPTD di NTT (Kabupaten/Kota)</h3>
             <div class="region-grid">
               <p>Kabupaten Alor - Kalabahi</p>
               <p>Kabupaten Belu - Atambua</p>
@@ -239,15 +240,13 @@
             </p>
 
             <h4>Checklist Hari Pertama Magang</h4>
-            <ul class="checklist-list">
-              <li>Sudah hadir sebelum pukul 07.30.</li>
-              <li>Sudah lapor ke pembimbing/unit kerja.</li>
-              <li>Sudah memahami ruang kerja dan alur koordinasi harian.</li>
-              <li>Sudah membuka tab Dokumen dan membaca dokumen inti (RENSTRA/RPJMD).</li>
-              <li>Sudah menyimpan link laporan harian Tally.</li>
-              <li>Sudah memahami aturan disiplin, etika, dan jam kerja.</li>
-              <li>Sudah mengenal istilah dasar BPAD (BPAD, UPTD, Samsat, STNK, PKB).</li>
-            </ul>
+            <div class="progress-card">
+              <p id="checklist-progress-text" class="progress-text">Progress checklist: 0/0 selesai</p>
+              <div class="progress-bar">
+                <div id="checklist-progress-fill" class="progress-fill"></div>
+              </div>
+            </div>
+            <ul id="onboarding-checklist" class="checklist-list"></ul>
 
             <h4>1. Disiplin Waktu dan Kehadiran</h4>
             <ul>
@@ -312,6 +311,32 @@
               <li>Menjadikan masa magang sebagai proses belajar aktif, bukan sekadar memenuhi kewajiban.</li>
             </ul>
           </article>
+
+          <article class="panel">
+            <h3>FAQ Magang BPAD</h3>
+            <div class="faq-list">
+              <details>
+                <summary>Jika terlambat atau berhalangan hadir, harus ke siapa?</summary>
+                <p>Segera informasikan ke pembimbing di unit kerja dan admin terkait secepat mungkin.</p>
+              </details>
+              <details>
+                <summary>Dokumen apa yang wajib dibaca di awal magang?</summary>
+                <p>Minimal baca RENSTRA, RPJMD, dan LKIP agar memahami arah kerja serta kinerja instansi.</p>
+              </details>
+              <details>
+                <summary>Apakah peserta magang boleh langsung mengerjakan tugas kantor?</summary>
+                <p>Boleh, setelah mendapat arahan pembimbing. Jika belum paham tugas, wajib bertanya terlebih dahulu.</p>
+              </details>
+              <details>
+                <summary>Bagaimana cara membuat laporan harian yang baik?</summary>
+                <p>Tulis kegiatan utama, hasil kerja, dan pembelajaran harian secara ringkas, jelas, dan konsisten.</p>
+              </details>
+              <details>
+                <summary>Apa yang dilakukan jika sedang tidak ada tugas?</summary>
+                <p>Lanjutkan membaca dokumen, mengulang materi onboarding, atau minta arahan tambahan ke pembimbing.</p>
+              </details>
+            </div>
+          </article>
         </section>
 
         <section id="tab-dokumen" class="tab-panel">
@@ -322,6 +347,12 @@
                 <p>Baca dokumen regulasi, laporan, dan referensi pendukung magang (mode baca saja).</p>
               </div>
             </div>
+            <div class="progress-card doc-progress-card">
+              <p id="doc-progress-text" class="progress-text">Progress baca dokumen: 0/0 selesai</p>
+              <div class="progress-bar">
+                <div id="doc-progress-fill" class="progress-fill"></div>
+              </div>
+            </div>
             <div id="doc-grid" class="doc-grid"></div>
           </article>
         </section>
@@ -330,7 +361,7 @@
           <article class="panel game-panel">
             <h3>Game Singkatan BPAD</h3>
             <p>
-              Jawab pertanyaan singkatan seputar BPAD seperti UPTD, Samsat, STNK, dan istilah lain.
+              Jawab pertanyaan singkatan seputar BPAD seperti UPTD, STNK, dan istilah lain.
             </p>
             <div id="quiz-box" class="quiz-box">
               <p id="quiz-progress" class="quiz-progress"></p>
@@ -345,13 +376,29 @@
             </div>
           </article>
         </section>
+
       </section>
+
+      <footer class="site-footer panel">
+        <div class="footer-brand">
+          <img class="brand-logo footer-logo" src="./logo.png" alt="Logo BPAD" />
+          <div>
+            <h4>BPAD Magang Hub</h4>
+            <p>Media onboarding dan literasi peserta magang BPAD Provinsi NTT.</p>
+          </div>
+        </div>
+        <p class="footer-copy">© 2026 BPAD Provinsi Nusa Tenggara Timur. All rights reserved.</p>
+      </footer>
     </main>
 
     <template id="doc-card-template">
       <article class="doc-card">
         <h4 class="doc-title"></h4>
         <p class="doc-desc"></p>
+        <label class="doc-read-toggle">
+          <input type="checkbox" class="doc-read-checkbox" />
+          <span>Sudah dibaca</span>
+        </label>
         <div class="doc-actions">
           <a class="btn btn-ghost doc-link" target="_blank" rel="noopener noreferrer">Buka Dokumen</a>
         </div>

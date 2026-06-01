@@ -38,12 +38,34 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
+  --color: rgba(114, 114, 114, 0.3);
   background-image:
-    linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
-  background-size: 52px 52px;
-  mask-image: radial-gradient(circle at center, black 25%, transparent 80%);
-  opacity: 0.18;
+    linear-gradient(
+      0deg,
+      transparent 24%,
+      var(--color) 25%,
+      var(--color) 26%,
+      transparent 27%,
+      transparent 74%,
+      var(--color) 75%,
+      var(--color) 76%,
+      transparent 77%,
+      transparent
+    ),
+    linear-gradient(
+      90deg,
+      transparent 24%,
+      var(--color) 25%,
+      var(--color) 26%,
+      transparent 27%,
+      transparent 74%,
+      var(--color) 75%,
+      var(--color) 76%,
+      transparent 77%,
+      transparent
+    );
+  background-size: 55px 55px;
+  opacity: 0.22;
 }
 
 main {
@@ -211,7 +233,7 @@ ol {
 
 .tabs {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0.7rem;
   margin-bottom: 1rem;
   position: sticky;
@@ -264,6 +286,87 @@ ol {
 
 .checklist-list li {
   margin-bottom: 0.4rem;
+}
+
+.progress-card {
+  margin: 0.6rem 0 0.9rem;
+  padding: 0.8rem;
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  border-radius: 12px;
+  background: rgba(10, 15, 23, 0.58);
+}
+
+.progress-text {
+  margin: 0 0 0.55rem;
+  color: #c6e5ff;
+  font-weight: 600;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(71, 85, 105, 0.36);
+}
+
+.progress-fill {
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #2dd4bf, #38bdf8);
+  transition: width 0.25s ease;
+}
+
+.checklist-list {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.checklist-item {
+  margin: 0;
+}
+
+.checklist-toggle {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  padding: 0.65rem 0.7rem;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 10px;
+  background: rgba(13, 18, 27, 0.72);
+  color: var(--text);
+}
+
+.checklist-toggle input {
+  margin-top: 0.18rem;
+  width: 16px;
+  height: 16px;
+  accent-color: #2dd4bf;
+}
+
+.faq-list {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.faq-list details {
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 10px;
+  background: rgba(11, 16, 24, 0.58);
+  padding: 0.7rem 0.8rem;
+}
+
+.faq-list summary {
+  cursor: pointer;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.faq-list details p {
+  margin: 0.55rem 0 0;
 }
 
 #tab-pengenalan .panel:nth-child(2) {
@@ -352,6 +455,21 @@ ol {
   min-height: 58px;
 }
 
+.doc-read-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+  color: #d3e4f7;
+  font-size: 0.92rem;
+}
+
+.doc-read-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #2dd4bf;
+}
+
 .doc-actions {
   display: flex;
 }
@@ -380,6 +498,125 @@ ol {
   background: linear-gradient(150deg, #1f2937, #17202f);
   color: var(--text);
   border: 1px solid rgba(156, 163, 175, 0.35);
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+  grid-column: 1 / -1;
+}
+
+.btn.btn-sm {
+  padding: 0.46rem 0.68rem;
+  border-radius: 10px;
+  font-size: 0.82rem;
+}
+
+body.loading {
+  overflow: hidden;
+}
+
+.page-loader {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  gap: 1.5rem;
+  background: rgba(8, 11, 17, 0.74);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  z-index: 9999;
+}
+
+.page-loader.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.loader-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loader-logo {
+  width: 82px;
+  height: 82px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.45));
+  animation: floatLogo 2s ease-in-out infinite;
+}
+
+.loader-text {
+  margin: 0;
+  color: #dbe7f7;
+  font-weight: 600;
+}
+
+/* From Uiverse.io by satyamchaudharydev */
+.spinner {
+  position: relative;
+  width: 120px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.spinner span {
+  position: absolute;
+  top: 50%;
+  left: var(--left);
+  width: 35px;
+  height: 7px;
+  background: #ffff;
+  animation: dominos 1s ease infinite;
+  box-shadow: 2px 2px 3px 0px black;
+}
+
+.spinner span:nth-child(1) {
+  --left: 80px;
+  animation-delay: 0.125s;
+}
+
+.spinner span:nth-child(2) {
+  --left: 70px;
+  animation-delay: 0.3s;
+}
+
+.spinner span:nth-child(3) {
+  left: 60px;
+  animation-delay: 0.425s;
+}
+
+.spinner span:nth-child(4) {
+  animation-delay: 0.54s;
+  left: 50px;
+}
+
+.spinner span:nth-child(5) {
+  animation-delay: 0.665s;
+  left: 40px;
+}
+
+.spinner span:nth-child(6) {
+  animation-delay: 0.79s;
+  left: 30px;
+}
+
+.spinner span:nth-child(7) {
+  animation-delay: 0.915s;
+  left: 20px;
+}
+
+.spinner span:nth-child(8) {
+  left: 10px;
 }
 
 .game-panel {
@@ -427,6 +664,47 @@ ol {
   margin-top: 0.85rem;
 }
 
+.site-footer {
+  margin-top: 1.4rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "brand actions"
+    "copy copy";
+  align-items: center;
+  gap: 0.9rem 1rem;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  grid-area: brand;
+}
+
+.footer-logo {
+  width: 42px;
+  height: 42px;
+}
+
+.footer-brand h4 {
+  margin: 0;
+}
+
+.footer-brand p {
+  margin: 0.2rem 0 0;
+  font-size: 0.95rem;
+}
+
+.footer-copy {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #94a3b8;
+  grid-area: copy;
+  padding-top: 0.2rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+
 @keyframes drift {
   0%,
   100% {
@@ -456,6 +734,31 @@ ol {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes dominos {
+  50% {
+    opacity: 0.7;
+  }
+
+  75% {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+
+  80% {
+    opacity: 1;
+  }
+}
+
+@keyframes floatLogo {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
   }
 }
 
@@ -507,6 +810,17 @@ ol {
   .doc-actions .btn {
     width: 100%;
     text-align: center;
+  }
+
+  .footer-brand {
+    align-items: flex-start;
+  }
+
+  .site-footer {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "brand"
+      "copy";
   }
 
   .brand-block {
