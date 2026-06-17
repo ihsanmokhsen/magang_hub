@@ -31,7 +31,7 @@ const onboardingChecklistItems = [
   { id: 'baca-dokumen-awal', label: 'Sudah membuka tab Dokumen dan membaca dokumen inti (RENSTRA/RPJMD).' },
   { id: 'simpan-laporan', label: 'Sudah menyimpan link laporan harian Tally.' },
   { id: 'pahami-aturan', label: 'Sudah memahami aturan disiplin, etika, dan jam kerja.' },
-  { id: 'kenal-istilah', label: 'Sudah mengenal istilah dasar BPAD (BPAD, UPTD, STNK, PKB, BBNKB).' },
+  { id: 'kenal-istilah', label: 'Sudah mengenal istilah dasar BPAD (cek tab Glosarium).' },
 ];
 
 const quizData = [
@@ -93,6 +93,76 @@ const quizData = [
   {
     question: 'Salah satu tugas UPTD BPAD adalah...',
     options: ['Verifikasi dan penagihan pajak', 'Menyusun APBN', 'Menerbitkan SIM'],
+    answer: 0,
+  },
+  {
+    question: 'Apa kepanjangan SAMSAT?',
+    options: ['Sistem Administrasi Manunggal Satu Atap', 'Sistem Administrasi Masyarakat Satu Atap', 'Sarana Administrasi Masyarakat Satu Atap'],
+    answer: 0,
+  },
+  {
+    question: 'Apa kepanjangan BPKB?',
+    options: ['Bukti Pemilikan Kendaraan Bermotor', 'Buku Pemilik Kendaraan Bermotor', 'Bukti Pendaftaran Kendaraan Bermotor'],
+    answer: 1,
+  },
+  {
+    question: 'Apa kepanjangan OPD?',
+    options: ['Organisasi Pembangunan Daerah', 'Organisasi Perangkat Daerah', 'Organisasi Pelayanan Daerah'],
+    answer: 1,
+  },
+  {
+    question: 'Apa kepanjangan DAU?',
+    options: ['Dana Alokasi Umum', 'Dana Anggaran Umum', 'Dana Alokasi Usaha'],
+    answer: 0,
+  },
+  {
+    question: 'Apa kepanjangan DAK?',
+    options: ['Dana Alokasi Khusus', 'Dana Anggaran Khusus', 'Dana Alokasi Keuangan'],
+    answer: 0,
+  },
+  {
+    question: 'Apa kepanjangan APBD?',
+    options: ['Anggaran Pendapatan dan Belanja Daerah', 'Anggaran Pembangunan dan Belanja Daerah', 'Anggaran Pendapatan dan Biaya Daerah'],
+    answer: 0,
+  },
+  {
+    question: 'Apa kepanjangan ASN?',
+    options: ['Aparatur Sipil Negara', 'Aparatur Sipil Nasional', 'Aparatur Sistem Negara'],
+    answer: 0,
+  },
+  {
+    question: 'Apa kepanjangan CPNS?',
+    options: ['Calon Pegawai Negeri Sipil', 'Calon Pekerja Negeri Sipil', 'Calon Personel Negeri Sipil'],
+    answer: 0,
+  },
+  {
+    question: 'Apa kepanjangan PPPK?',
+    options: ['Pegawai Pemerintah dengan Perjanjian Kerja', 'Pegawai Pemerintah dengan Perjanjian Kontrak', 'Pegawai Publik dengan Perjanjian Kerja'],
+    answer: 0,
+  },
+  {
+    question: 'Apa kepanjangan SOTK?',
+    options: ['Susunan Organisasi dan Tata Kerja', 'Sistem Organisasi dan Tata Kelola', 'Struktur Organisasi dan Tata Kerja'],
+    answer: 0,
+  },
+  {
+    question: 'Apa kepanjangan BUMD?',
+    options: ['Badan Usaha Milik Daerah', 'Badan Usaha Manajemen Daerah', 'Badan Umum Milik Daerah'],
+    answer: 0,
+  },
+  {
+    question: 'Apa kepanjangan SKPD?',
+    options: ['Satuan Kerja Perangkat Daerah', 'Sistem Kerja Perangkat Daerah', 'Satuan Kerja Pembangunan Daerah'],
+    answer: 0,
+  },
+  {
+    question: 'Retribusi daerah adalah...',
+    options: ['Pungutan atas layanan atau izin yang disediakan pemerintah daerah', 'Pajak yang dipungut oleh pemerintah pusat', 'Dana hibah dari luar negeri'],
+    answer: 0,
+  },
+  {
+    question: 'Bidang Pendapatan II BPAD mengelola...',
+    options: ['Retribusi daerah dan dana perimbangan', 'Pajak Kendaraan Bermotor', 'Bea Balik Nama Kendaraan Bermotor'],
     answer: 0,
   },
 ];
@@ -182,13 +252,19 @@ function toId(value) {
 }
 
 function setActiveTab(tabName) {
-  tabButtons.forEach((btn) => btn.classList.remove('active'));
+  tabButtons.forEach((btn) => {
+    btn.classList.remove('active');
+    btn.setAttribute('aria-selected', 'false');
+  });
   tabPanels.forEach((panel) => panel.classList.remove('active'));
 
   const targetButton = tabButtons.find((btn) => btn.dataset.tab === tabName);
   const targetPanel = document.getElementById(`tab-${tabName}`);
 
-  if (targetButton) targetButton.classList.add('active');
+  if (targetButton) {
+    targetButton.classList.add('active');
+    targetButton.setAttribute('aria-selected', 'true');
+  }
   if (targetPanel) targetPanel.classList.add('active');
 }
 

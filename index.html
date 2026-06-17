@@ -3,7 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BPAD Magang Hub - Welcome</title>
+    <title>BPAD Magang Hub - Ruang Belajar Digital Sobat Magang BPAD NTT</title>
+    <meta name="description" content="BPAD Magang Hub adalah ruang belajar digital untuk peserta magang BPAD Provinsi NTT. Pelajari profil instansi, aturan kerja, dokumen penting, dan istilah kunci sebelum mulai berkegiatan." />
+    <meta name="keywords" content="BPAD, magang, NTT, Nusa Tenggara Timur, onboarding magang, Badan Pendapatan Aset Daerah" />
+    <meta name="author" content="BPAD Provinsi Nusa Tenggara Timur" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://magang.bpadntt.cloud/" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://magang.bpadntt.cloud/" />
+    <meta property="og:title" content="BPAD Magang Hub - Ruang Belajar Digital Sobat Magang BPAD NTT" />
+    <meta property="og:description" content="Ruang belajar digital untuk Sobat Magang BPAD agar lebih cepat memahami instansi, tugas, budaya kerja, dan istilah penting sebelum mulai berkegiatan." />
+    <meta property="og:image" content="https://magang.bpadntt.cloud/logo.png" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content="BPAD Magang Hub" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="BPAD Magang Hub - Ruang Belajar Digital Sobat Magang BPAD NTT" />
+    <meta name="twitter:description" content="Ruang belajar digital untuk Sobat Magang BPAD agar lebih cepat memahami instansi, tugas, budaya kerja, dan istilah penting." />
+    <meta name="twitter:image" content="https://magang.bpadntt.cloud/logo.png" />
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "BPAD Magang Hub",
+      "url": "https://magang.bpadntt.cloud",
+      "description": "Ruang belajar digital untuk peserta magang BPAD Provinsi Nusa Tenggara Timur.",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "id-ID",
+      "provider": {
+        "@type": "GovernmentOrganization",
+        "name": "BPAD Provinsi Nusa Tenggara Timur",
+        "url": "https://bpadntt.cloud"
+      }
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -11,10 +47,13 @@
       rel="stylesheet"
     />
     <link rel="icon" type="image/jpeg" href="./fav.jpg" />
+    <link rel="manifest" href="./manifest.json" />
+    <meta name="theme-color" content="#0b0f14" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <main>
+    <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
+    <main id="main-content" role="main">
       <section id="welcome-screen" class="screen active">
         <div class="hero-glow"></div>
         <div class="hero-content">
@@ -46,6 +85,11 @@
       </div>
     </div>
     <script>
+      // Register service worker
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      }
+
       const startBtn = document.getElementById('start-btn');
       const pageLoader = document.getElementById('page-loader');
       let isNavigating = false;

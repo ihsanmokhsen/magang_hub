@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BPAD Magang Hub</title>
+    <title>Dashboard - BPAD Magang Hub</title>
+    <meta name="description" content="Dashboard BPAD Magang Hub: pengenalan BPAD, aturan magang, dokumen penting, dan game singkatan untuk Sobat Magang BPAD Provinsi NTT." />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="canonical" href="https://magang.bpadntt.cloud/dashboard.html" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -11,10 +14,13 @@
       rel="stylesheet"
     />
     <link rel="icon" type="image/jpeg" href="./fav.jpg" />
+    <link rel="manifest" href="./manifest.json" />
+    <meta name="theme-color" content="#0b0f14" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <main>
+    <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
+    <main id="main-content" role="main">
       <section id="dashboard-screen" class="screen active">
         <header class="topbar panel">
           <div class="brand-block">
@@ -24,19 +30,20 @@
             <h2>BPAD Magang Hub</h2>
             </div>
           </div>
-          <a class="btn btn-ghost" target="_blank" rel="noopener noreferrer" href="https://tally.so/r/682JGe">
+          <a class="btn btn-ghost" target="_blank" rel="noopener noreferrer" href="https://tally.so/r/682JGe" aria-label="Isi Laporan Harian (membuka tab baru)">
             Laporan Harian
           </a>
         </header>
 
-        <nav class="tabs panel" aria-label="Tab Navigasi">
-          <button class="tab-btn active" data-tab="pengenalan">Pengenalan</button>
-          <button class="tab-btn" data-tab="aturan">Aturan</button>
-          <button class="tab-btn" data-tab="dokumen">Dokumen</button>
-          <button class="tab-btn" data-tab="game">Game</button>
+        <nav class="tabs panel" aria-label="Tab Navigasi" role="tablist">
+          <button class="tab-btn active" data-tab="pengenalan" role="tab" aria-selected="true" aria-controls="tab-pengenalan">Pengenalan</button>
+          <button class="tab-btn" data-tab="aturan" role="tab" aria-selected="false" aria-controls="tab-aturan">Aturan</button>
+          <button class="tab-btn" data-tab="dokumen" role="tab" aria-selected="false" aria-controls="tab-dokumen">Dokumen</button>
+          <button class="tab-btn" data-tab="glosarium" role="tab" aria-selected="false" aria-controls="tab-glosarium">Glosarium</button>
+          <button class="tab-btn" data-tab="game" role="tab" aria-selected="false" aria-controls="tab-game">Game</button>
         </nav>
 
-        <section id="tab-pengenalan" class="tab-panel active">
+        <section id="tab-pengenalan" class="tab-panel active" role="tabpanel" aria-labelledby="tab-pengenalan">
           <article class="panel">
             <h3>Ringkasan Cepat</h3>
             <p>
@@ -45,8 +52,8 @@
             </p>
             <div class="region-grid">
               <p><strong>22 UPTD</strong><br />Dukungan layanan UPTD di kabupaten/kota NTT.</p>
-              <p><strong>4 Tab Utama</strong><br />Pengenalan, Aturan, Dokumen, dan Game.</p>
-              <p><strong>Mode Baca</strong><br />Konten aman untuk peserta magang tanpa edit/hapus.</p>
+              <p><strong>5 Tab Utama</strong><br />Pengenalan, Aturan, Dokumen, Glosarium, dan Game.</p>
+              <p><strong>26 Soal Kuis</strong><br />Uji pengetahuan tentang singkatan dan istilah BPAD serta pemerintahan.</p>
             </div>
           </article>
 
@@ -182,6 +189,44 @@
           </article>
 
           <article class="panel">
+            <h3>Layanan Digital BPAD NTT</h3>
+            <p>
+              BPAD Provinsi NTT terus berinovasi dalam menyediakan layanan digital untuk memudahkan masyarakat
+              dan wajib pajak dalam mengakses informasi serta melakukan pembayaran pajak daerah.
+            </p>
+            <div class="region-grid">
+              <p><strong>SIMARBPAD</strong><br />Sistem informasi manajemen pajak dan aset daerah terintegrasi untuk pencatatan, pengarsipan, dan pelaporan.</p>
+              <p><strong>PRO NTT</strong><br />Aplikasi layanan pembayaran pajak kendaraan dan retribusi daerah secara digital.</p>
+              <p><strong>Samsat Online</strong><br />Layanan cek dan bayar pajak kendaraan bermotor melalui platform online Samsat NTT.</p>
+              <p><strong>Info Pajak Kendaraan</strong><br />Pengecekan status pajak kendaraan melalui website atau aplikasi Petugas Samsat NTT.</p>
+            </div>
+            <p>
+              Layanan-layanan ini mendukung transparansi dan akuntabilitas pengelolaan Pendapatan Asli Daerah (PAD)
+              serta memudahkan wajib pajak dalam memenuhi kewajiban perpajakan.
+            </p>
+          </article>
+
+          <article class="panel">
+            <h3>Sumber Pendapatan Asli Daerah (PAD)</h3>
+            <p>
+              PAD adalah pendapatan yang diperoleh daerah dari potensi sumber daya yang ada di wilayahnya.
+              BPAD berperan penting dalam mengoptimalkan penerimaan PAD melalui bidang-bidang teknisnya.
+            </p>
+            <h4>Komponen Utama PAD:</h4>
+            <ul>
+              <li><strong>Pajak Daerah</strong> — pungutan yang ditetapkan melalui Peraturan Daerah, meliputi PKB, BBNKB, PBBKB, dan Pajak Rokok.</li>
+              <li><strong>Retribusi Daerah</strong> — pungutan atas layanan atau izin yang disediakan pemerintah daerah.</li>
+              <li><strong>Hasil Pengelolaan Kekayaan Daerah yang Dipisahkan</strong> — pendapatan dari BUMD dan investasi daerah.</li>
+              <li><strong>Pendapatan PAD Lain-lain yang Sah</strong> — hibah, hasil kerja sama, dan pendapatan lain sesuai regulasi.</li>
+            </ul>
+            <h4>Selain PAD, daerah juga menerima:</h4>
+            <ul>
+              <li><strong>Dana Perimbangan</strong> — dialokasikan dari APBN, termasuk DAU (Dana Alokasi Umum) dan DAK (Dana Alokasi Khusus).</li>
+              <li><strong>Dana Transfer Lainnya</strong> — Dana Desa, Dana Insentif Daerah, dan dana otonomi khusus.</li>
+            </ul>
+          </article>
+
+          <article class="panel">
             <h3>Kepala Dinas dari Tahun ke Tahun</h3>
             <ol class="history-list">
               <li>Piet A Tallo - Kepala Dinas Penda Tk.I NTT (15-03-1974 s/d 12-09-1983)</li>
@@ -231,7 +276,7 @@
           </article>
         </section>
 
-        <section id="tab-aturan" class="tab-panel">
+        <section id="tab-aturan" class="tab-panel" role="tabpanel" aria-labelledby="tab-aturan">
           <article class="panel">
             <h3>Aturan Magang di BPAD (Panduan Lengkap)</h3>
             <p>
@@ -336,11 +381,62 @@
                 <summary>Apa yang dilakukan jika sedang tidak ada tugas?</summary>
                 <p>Lanjutkan membaca dokumen, mengulang materi onboarding, atau minta arahan tambahan ke pembimbing.</p>
               </details>
+              <details>
+                <summary>Bagaimana cara membangun jejaring (networking) saat magang?</summary>
+                <p>Perkenalkan diri dengan sopan, tunjukkan antusiasme, dan jalin komunikasi dengan pegawai di berbagai unit kerja.</p>
+              </details>
+              <details>
+                <summary>Apa perbedaan OPD dan UPTD?</summary>
+                <p>OPD (Organisasi Perangkat Daerah) adalah lembaga pemerintah daerah secara keseluruhan. UPTD (Unit Pelaksana Teknis Daerah) adalah unit pelaksana teknis di bawah OPD yang tersebar di kabupaten/kota.</p>
+              </details>
+              <details>
+                <summary>Apa itu SOTK dan mengapa penting?</summary>
+                <p>SOTK (Susunan Organisasi dan Tata Kerja) adalah pedoman dasar pembentukan organisasi pemerintahan. Dokumen ini menjelaskan struktur, tugas, dan fungsi setiap unit kerja.</p>
+              </details>
             </div>
+          </article>
+
+          <article class="panel">
+            <h3>Tips Sukses Magang di Instansi Pemerintah</h3>
+            <p>Berikut tips praktis agar masa magang kamu di BPAD memberikan pengalaman maksimal:</p>
+
+            <h4>1. Bangun Kesan Positif dari Hari Pertama</h4>
+            <ul>
+              <li>Datang lebih awal, berpakaian rapi, dan siapkan diri dengan informasi dasar tentang instansi.</li>
+              <li>Perkenalkan diri dengan sopan kepada pegawai di unit kerja dan tunjukkan sikap antusias.</li>
+            </ul>
+
+            <h4>2. Jadilah Proaktif, Bukan Pasif</h4>
+            <ul>
+              <li>Jangan hanya menunggu arahan — tanyakan apa yang bisa kamu bantu.</li>
+              <li>Catat setiap tugas dan pelajari cara mengerjakannya dengan baik.</li>
+              <li>Jika selesai lebih cepat, minta tugas tambahan atau pelajari dokumen terkait.</li>
+            </ul>
+
+            <h4>3. Kuasai Komunikasi Profesional</h4>
+            <ul>
+              <li>Gunakan bahasa formal saat berkomunikasi dengan atasan dan pegawai.</li>
+              <li>Sampaikan laporan secara tertulis dan terstruktur.</li>
+              <li>Berani bertanya jika belum paham, tapi usahakan mencari jawaban sendiri terlebih dahulu.</li>
+            </ul>
+
+            <h4>4. Bangun Jejaring Profesional</h4>
+            <ul>
+              <li>Kenali pegawai dari berbagai unit kerja, bukan hanya di unit kamu.</li>
+              <li>Jalin relasi baik yang bisa menjadi referensi di masa depan.</li>
+              <li>Ikuti kegiatan kantor seperti rapat, apel pagi, atau acara internal.</li>
+            </ul>
+
+            <h4>5. Dokumentasikan Pengalaman</h4>
+            <ul>
+              <li>Catat hal baru setiap hari: istilah, proses kerja, dan pelajaran yang didapat.</li>
+              <li>Simpan dokumentasi kerja untuk bahan laporan akhir magang.</li>
+              <li>Minta umpan balik dari pembimbing sebelum masa magang berakhir.</li>
+            </ul>
           </article>
         </section>
 
-        <section id="tab-dokumen" class="tab-panel">
+        <section id="tab-dokumen" class="tab-panel" role="tabpanel" aria-labelledby="tab-dokumen">
           <article class="panel docs-panel">
             <div class="section-head">
               <div>
@@ -358,11 +454,63 @@
           </article>
         </section>
 
-        <section id="tab-game" class="tab-panel">
+        <section id="tab-glosarium" class="tab-panel" role="tabpanel" aria-labelledby="tab-glosarium">
+          <article class="panel">
+            <h3>Glosarium Istilah Pemerintahan & BPAD</h3>
+            <p>Kamus singkat istilah dan singkatan yang sering digunakan di lingkungan BPAD dan instansi pemerintah daerah.</p>
+
+            <h4>Istilah Pajak & Kendaraan</h4>
+            <div class="glossary-grid">
+              <div class="glossary-item"><strong>PKB</strong><p>Pajak Kendaraan Bermotor — pajak tahunan yang wajib dibayar pemilik kendaraan.</p></div>
+              <div class="glossary-item"><strong>BBNKB</strong><p>Bea Balik Nama Kendaraan Bermotor — pungutan saat terjadi perubahan kepemilikan kendaraan.</p></div>
+              <div class="glossary-item"><strong>PBBKB</strong><p>Pajak Bahan Bakar Kendaraan Bermotor — pajak atas bahan bakar yang digunakan kendaraan.</p></div>
+              <div class="glossary-item"><strong>STNK</strong><p>Surat Tanda Nomor Kendaraan — dokumen resmi identitas dan registrasi kendaraan.</p></div>
+              <div class="glossary-item"><strong>BPKB</strong><p>Buku Pemilik Kendaraan Bermotor — bukti sah kepemilikan kendaraan yang diterbitkan Polri.</p></div>
+              <div class="glossary-item"><strong>SAMSAT</strong><p>Sistem Administrasi Manunggal Satu Atap — layanan terpadu pendaftaran dan pembayaran pajak kendaraan.</p></div>
+              <div class="glossary-item"><strong>Pajak Rokok</strong><p>Pungutan atas rokok yang dipungut pemerintah provinsi sebagai bagian dari PAD.</p></div>
+            </div>
+
+            <h4>Istilah Keuangan Daerah</h4>
+            <div class="glossary-grid">
+              <div class="glossary-item"><strong>PAD</strong><p>Pendapatan Asli Daerah — pendapatan yang diperoleh daerah dari potensi sumber dayanya sendiri.</p></div>
+              <div class="glossary-item"><strong>APBD</strong><p>Anggaran Pendapatan dan Belanja Daerah — rencana keuangan tahunan pemerintah daerah.</p></div>
+              <div class="glossary-item"><strong>DAU</strong><p>Dana Alokasi Umum — dana dari APBN untuk mendanai kebutuhan daerah secara merata.</p></div>
+              <div class="glossary-item"><strong>DAK</strong><p>Dana Alokasi Khusus — dana dari APBN untuk mendanai kebutuhan khusus daerah tertentu.</p></div>
+              <div class="glossary-item"><strong>Retribusi Daerah</strong><p>Pungutan atas layanan atau izin yang disediakan pemerintah daerah kepada masyarakat.</p></div>
+              <div class="glossary-item"><strong>BUMD</strong><p>Badan Usaha Milik Daerah — perusahaan yang dimiliki oleh pemerintah daerah.</p></div>
+            </div>
+
+            <h4>Istilah Kepegawaian & Organisasi</h4>
+            <div class="glossary-grid">
+              <div class="glossary-item"><strong>ASN</strong><p>Aparatur Sipil Negara — profesi bagi pegawai negeri sipil dan pegawai pemerintah dengan perjanjian kerja.</p></div>
+              <div class="glossary-item"><strong>PNS</strong><p>Pegawai Negeri Sipil — pegawai yang diangkat oleh pejabat pembina kepegawaian.</p></div>
+              <div class="glossary-item"><strong>CPNS</strong><p>Calon Pegawai Negeri Sipil — status sebelum diangkat menjadi PNS tetap.</p></div>
+              <div class="glossary-item"><strong>PPPK</strong><p>Pegawai Pemerintah dengan Perjanjian Kerja — pegawai ASN yang diangkat berdasarkan perjanjian kerja.</p></div>
+              <div class="glossary-item"><strong>OPD</strong><p>Organisasi Perangkat Daerah — lembaga/organ yang membantu kepala daerah dalam penyelenggaraan pemerintahan.</p></div>
+              <div class="glossary-item"><strong>SKPD</strong><p>Satuan Kerja Perangkat Daerah — unit organisasi dalam OPD yang melaksanakan urusan pemerintahan.</p></div>
+              <div class="glossary-item"><strong>UPTD</strong><p>Unit Pelaksana Teknis Daerah — unit pelaksana teknis yang tersebar di kabupaten/kota.</p></div>
+              <div class="glossary-item"><strong>SOTK</strong><p>Susunan Organisasi dan Tata Kerja — pedoman pembentukan struktur organisasi pemerintahan.</p></div>
+              <div class="glossary-item"><strong>NIP</strong><p>Nomor Induk Pegawai — nomor identitas unik untuk setiap pegawai ASN.</p></div>
+              <div class="glossary-item"><strong>SK</strong><p>Surat Keputusan — dokumen resmi yang menetapkan keputusan pejabat berwenang.</p></div>
+            </div>
+
+            <h4>Istilah Dokumen & Perencanaan</h4>
+            <div class="glossary-grid">
+              <div class="glossary-item"><strong>RENSTRA</strong><p>Rencana Strategis — dokumen perencanaan jangka menengah (5 tahunan) suatu instansi.</p></div>
+              <div class="glossary-item"><strong>RPJMD</strong><p>Rencana Pembangunan Jangka Menengah Daerah — dokumen perencanaan daerah 5 tahunan.</p></div>
+              <div class="glossary-item"><strong>LKIP</strong><p>Laporan Kinerja Instansi Pemerintah — laporan pencapaian kinerja instansi selama periode tertentu.</p></div>
+              <div class="glossary-item"><strong>SKP</strong><p>Sasaran Kinerja Pegawai — target kinerja yang harus dicapai setiap pegawai dalam setahun.</p></div>
+              <div class="glossary-item"><strong>IKU</strong><p>Indikator Kinerja Utama — ukuran keberhasilan pencapaian tujuan organisasi.</p></div>
+            </div>
+          </article>
+        </section>
+
+        <section id="tab-game" class="tab-panel" role="tabpanel" aria-labelledby="tab-game">
           <article class="panel game-panel">
             <h3>Game Singkatan BPAD</h3>
             <p>
-              Jawab pertanyaan singkatan seputar BPAD seperti UPTD, STNK, dan istilah lain.
+              Uji pengetahuan kamu tentang singkatan dan istilah seputar BPAD, pajak daerah, kepegawaian,
+              dan pemerintahan daerah. Total 26 pertanyaan!
             </p>
             <div id="quiz-box" class="quiz-box">
               <p id="quiz-progress" class="quiz-progress"></p>
@@ -406,6 +554,12 @@
       </article>
     </template>
 
+    <script>
+      // Register service worker
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      }
+    </script>
     <script src="./app.js"></script>
   </body>
 </html>

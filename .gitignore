@@ -1,3 +1,33 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Netlify (legacy)
+.netlify/
+
+# Supabase (legacy)
+supabase/
+
+# Environment
+.env
+.env.local
+
+# Node (if added later)
+node_modules/
+package-lock.json
+
+# Logs
+*.log
+
+# Build artifacts
+dist/
+build/
 .DS_Store
 .netlify/
 supabase/.DS_Store
