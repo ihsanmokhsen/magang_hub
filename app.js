@@ -5,7 +5,7 @@ const documents = [
   {
     title: 'RENSTRA',
     description: 'Rencana Strategis BPAD sebagai acuan program dan target kinerja.',
-    link: 'https://drive.google.com/file/d/12ZLeVzqYtcZbCqqo2ZqmwAqnHOTWjZGd/view?usp=sharing',
+    link: 'https://drive.google.com/file/d/12axCtZhUpclpakLYHfTzgjbIOyDX2SiQ/view?usp=sharing',
   },
   {
     title: 'RPJMD',
